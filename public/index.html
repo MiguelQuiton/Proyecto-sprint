@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Comidas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Registro de Comidas</h1>
+
+    <form id="formulario">
+        <label for="posicion">Posición:</label>
+        <input type="number" id="posicion" required>
+
+        <label for="nombre">Nombre del Plato:</label>
+        <input type="text" id="nombre" required>
+
+        <label for="valor">Valor:</label>
+        <input type="number" id="valor" required>
+
+        <button type="submit">Registrar</button>
+    </form>
+
+    <h2>Lista de Comidas Registradas</h2>
+    <ul id="lista-comidas"></ul>
+
+    <script src="script.js"></script>
+</body>
+</html>
