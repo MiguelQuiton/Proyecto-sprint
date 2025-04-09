@@ -1,30 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Comidas</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Escoge tu Rol</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Registro de Comidas</h1>
-    <!--Registro de formulario de registros de platos y de Clientes para pósterior hola fabio prueba-->>
-    <form id="formulario">
-        <label for="posicion">Posición:</label>
-        <input type="number" id="posicion" required>
+  <!-- Menú principal con los botones de roles -->
+  <div id="menuPrincipal">
+    <h1>Escoge tu Rol</h1>
+    <button id="btnCliente">Cliente</button>
+    <button id="btnGerente">Gerente</button>
+    <button id="btnEmpleado">Empleado</button>
+  </div>
 
-        <label for="nombre">Nombre del Plato:</label>
-        <input type="text" id="nombre" required>
+  <!-- Vista para el cliente (inicialmente oculta) -->
+  <div id="clienteView" class="hidden">
+    <h2>Registro de Cliente</h2>
+    <form id="formCliente">
+      <label for="nombreCliente">Nombre del Cliente:</label>
+      <input type="text" id="nombreCliente" required>
 
-        <label for="valor">Valores:</label>
-        <input type="number" id="valor" required>
+      <label for="apellidoCliente">Apellido del Cliente:</label>
+      <input type="text" id="apellidoCliente" required>
 
-        <button type="submit">Registrar</button>
+      <label for="ubicacionCliente">Ubicación:</label>
+      <input type="text" id="ubicacionCliente" required>
+
+      <label for="emailCliente">Email del Cliente:</label>
+      <input type="email" id="emailCliente" required>
+
+      <label for="telefonoCliente">Teléfono del Cliente:</label>
+      <input type="text" id="telefonoCliente" required>
+
+      <h3>Platos Disponibles</h3>
+      <!-- Área para mostrar los platos (placeholder por ahora) -->
+      <div id="platosArea">
+        <p>No hay platos disponibles</p>
+      </div>
+
+      <button type="submit">Confirmar Pedido</button>
     </form>
+  </div>
 
-    <h2>Lista de Comidas Registradas</h2>
-    <ul id="lista-comidas"></ul>
-
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
