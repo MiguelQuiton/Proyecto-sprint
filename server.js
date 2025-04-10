@@ -76,7 +76,7 @@ app.post("/registrar", (req, res) => {
 app.post("/registrar", (req, res) => {
     console.log("📩 Datos recibidos:", req.body);
 
-    const { posicion, nombre, valor } = req.body;
+    const { nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpledo, sueldoEmpleado } = req.body;
 
 
     conexion.query("SELECT * FROM Empleados WHERE nombre = ?", [nombre], (err, resultados) => {
@@ -91,8 +91,8 @@ app.post("/registrar", (req, res) => {
         } else {
             // Insertar el nuevo empleado
             conexion.query(
-                "INSERT INTO Empleado (nombreEmpleado,apellidoEmpleado, ciEmpleado,celEmpleado, cargoEmpledo,sueldoEmpleado    ) VALUES (?, ?, ?)",
-                [posicion, nombre, valor],
+                "INSERT INTO Empleado (nombreEmpleado,apellidoEmpleado, ciEmpleado,celEmpleado, cargoEmpledo,sueldoEmpleado) VALUES (?, ?, ?)",
+                [nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpledo, sueldoEmpleado],
                 (err, resultado) => {
                     if (err) {
                         console.error("❌ Error al registrar:", err);
