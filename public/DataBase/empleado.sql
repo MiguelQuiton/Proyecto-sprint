@@ -9,7 +9,7 @@ drop table if exists Empleado;
 /*==============================================================*/
 /* Table: Empleado                                              */
 /*==============================================================*/
-create table Empleado
+create or replace table Empleado
 (
    idEmpleado            int not null auto_increment,
    nombreEmpleado        varchar(30) not null,
