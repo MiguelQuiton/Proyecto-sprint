@@ -15,33 +15,59 @@
     <button id="btnEmpleado">Empleado</button>
   </div>
 
-  <!-- Vista para el cliente (inicialmente oculta) -->
+  <!-- Vista para el Cliente (inicialmente oculta) -->
   <div id="clienteView" class="hidden">
     <h2>Registro de Cliente</h2>
     <form id="formCliente">
       <label for="nombreCliente">Nombre del Cliente:</label>
       <input type="text" id="nombreCliente" required>
-
+      
       <label for="apellidoCliente">Apellido del Cliente:</label>
       <input type="text" id="apellidoCliente" required>
-
+      
       <label for="ubicacionCliente">Ubicación:</label>
       <input type="text" id="ubicacionCliente" required>
-
+      
       <label for="emailCliente">Email del Cliente:</label>
       <input type="email" id="emailCliente" required>
-
+      
       <label for="telefonoCliente">Teléfono del Cliente:</label>
       <input type="text" id="telefonoCliente" required>
-
+      
       <h3>Platos Disponibles</h3>
-      <!-- Área para mostrar los platos (placeholder por ahora) -->
+      <!-- Área para mostrar los platos (placeholder) -->
       <div id="platosArea">
         <p>No hay platos disponibles</p>
       </div>
-
+      
       <button type="submit">Confirmar Pedido</button>
     </form>
+  </div>
+
+  <!-- Vista para el Empleado (inicialmente oculta) -->
+  <div id="empleadoView" class="hidden">
+    <h2>Registro de Empleado</h2>
+    <form id="formEmpleado">
+      <label for="nombreEmpleado">Nombre del Empleado:</label>
+      <input type="text" id="nombreEmpleado" required>
+      
+      <label for="ciEmpleado">CI del Empleado:</label>
+      <input type="text" id="ciEmpleado" required>
+      
+      <label for="sueldoEmpleado">Sueldo del Empleado:</label>
+      <input type="number" id="sueldoEmpleado" required>
+      
+      <label for="cargoEmpleado">Cargo del Empleado:</label>
+      <input type="text" id="cargoEmpleado" required>
+      
+      <button type="submit">Registrar Empleado</button>
+    </form>
+  </div>
+
+  <!-- Vista para el Gerente (placeholder para futuros sprints) -->
+  <div id="gerenteView" class="hidden">
+    <h2>Vista Gerente</h2>
+    <p>Funcionalidades de gerente se agregarán en futuros sprints.</p>
   </div>
 
   <script src="script.js"></script>
