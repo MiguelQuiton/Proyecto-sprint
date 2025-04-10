@@ -87,7 +87,7 @@ app.post("/registrar", (req, res) => {
         }
         if (resultados.length > 0) {
             console.log("⚠️ Registro duplicado:", nombre);
-            res.json({ mensaje: "⚠️ No se puede registrar porque ya existe" });
+            res.json({ mensaje: "⚠️ No se puede registrar porque el empleado ya existe" });
         } else {
             // Insertar el nuevo empleado
             conexion.query(
