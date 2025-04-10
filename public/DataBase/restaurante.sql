@@ -16,7 +16,7 @@ drop table if exists Plato;
 /*==============================================================*/
 /* Table: Cliente                                               */
 /*==============================================================*/
-create table Cliente
+create or replace table Cliente
 (
    idCliente            int not null auto_increment,
    nombreCliente        varchar(30) not null,
@@ -30,7 +30,7 @@ create table Cliente
 /*==============================================================*/
 /* Table: Detalle_pedido                                        */
 /*==============================================================*/
-create table Detalle_pedido
+create or replace table Detalle_pedido
 (
    idDetalle            int not null auto_increment,
    idPedido             int,
@@ -44,7 +44,7 @@ create table Detalle_pedido
 /*==============================================================*/
 /* Table: Pago                                                  */
 /*==============================================================*/
-create table Pago
+create or replace table Pago
 (
    idPago               int not null auto_increment,
    idPedido             int,
@@ -57,7 +57,7 @@ create table Pago
 /*==============================================================*/
 /* Table: Pedido                                                */
 /*==============================================================*/
-create table Pedido
+create or replace table Pedido
 (
    idPedido             int not null auto_increment,
    idCliente            int,
@@ -70,7 +70,7 @@ create table Pedido
 /*==============================================================*/
 /* Table: Plato                                                 */
 /*==============================================================*/
-create table Plato
+create or replace table Plato
 (
    idPlato              int not null auto_increment,
    nombrePlato          varchar(50) not null,
