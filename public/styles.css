@@ -1,62 +1,64 @@
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 20px;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    max-width: 300px;
-    margin: 0 auto;
-  }
-  
-  input, button {
-    margin: 5px 0;
-    padding: 8px;
-  }
-  
-  button {
-    background-color: blue;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: darkblue;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: lightgray;
-    margin: 5px;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  /* Clase para ocultar elementos */
-  .hidden {
-    display: none;
-  }
-  
-  /* Estilos para el menú principal y la vista del cliente */
-  #menuPrincipal, #clienteView {
-    margin-top: 20px;
-  }
-  
-  #menuPrincipal h1 {
-    margin-bottom: 20px;
-  }
-  
-  #btnCliente, #btnGerente, #btnEmpleado {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+input, button {
+  margin: 5px 0;
+  padding: 8px;
+}
+
+button {
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: darkblue;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: lightgray;
+  margin: 5px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Clase para ocultar elementos */
+.hidden {
+  display: none;
+}
+
+/* Estilos para menú y vistas */
+#menuPrincipal, #clienteView, #empleadoView, #gerenteView {
+  margin-top: 20px;
+}
+
+#menuPrincipal h1 {
+  margin-bottom: 20px;
+}
+
+#btnCliente, #btnGerente, #btnEmpleado {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
   
