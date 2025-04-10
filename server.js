@@ -79,14 +79,14 @@ app.post("/registrar", (req, res) => {
     const { nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpledo, sueldoEmpleado } = req.body;
 
 
-    conexion.query("SELECT * FROM Empleados WHERE nombre = ?", [nombre], (err, resultados) => {
+    conexion.query("SELECT * FROM Empleados WHERE nombreEmpleado = ? and apellidoEmpleado= ? ", [nombreEmpleado], (err, resultados) => {
         if (err) {
             console.error("❌ Error en la consulta:", err);
             res.status(500).json({ mensaje: "Error en la consulta" });
             return;
         }
         if (resultados.length > 0) {
-            console.log("⚠️ Registro duplicado:", nombre);
+            console.log("⚠️ Registro duplicado:", nombreEmpleado);
             res.json({ mensaje: "⚠️ No se puede registrar porque el empleado ya existe" });
         } else {
             // Insertar el nuevo empleado
@@ -99,7 +99,7 @@ app.post("/registrar", (req, res) => {
                         res.status(500).json({ mensaje: "Error al registrar" });
                         return;
                     }
-                    console.log("✅ Registrado:", { posicion, nombre, valor });
+                    console.log("✅ Registrado:", { nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpledo, sueldoEmpleado });
                     res.json({ mensaje: "✅ Registrado exitosamente" });
                 }
             );
