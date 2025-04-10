@@ -19,5 +19,5 @@ create or replace table Empleado
    cargoEmpleado         varchar(25) not null,
    sueldoEmpleado        decimal(10,2) not null,
    
-   primary key (idCliente)
+   primary key (idEmpleado)
 );
