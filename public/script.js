@@ -1,41 +1,42 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Referencias a los botones y vistas
+  // Referencias a los botones de la pantalla principal y vistas
   const btnCliente = document.getElementById("btnCliente");
-  const btnEmpleado = document.getElementById("btnEmpleado");
   const btnGerente = document.getElementById("btnGerente");
   
   const menuPrincipal = document.getElementById("menuPrincipal");
   const clienteView = document.getElementById("clienteView");
-  const empleadoView = document.getElementById("empleadoView");
-  const gerenteView = document.getElementById("gerenteView");
 
-  // Función para ocultar todas las vistas
-  function hideAllViews() {
-    clienteView.classList.add("hidden");
-    empleadoView.classList.add("hidden");
-    gerenteView.classList.add("hidden");
+  // Vistas de Gerente
+  const gerenteLoginView = document.getElementById("gerenteLoginView");
+  const formGerenteLogin = document.getElementById("formGerenteLogin");
+  const gerenteDashboard = document.getElementById("gerenteDashboard");
+  const btnRegistrarPlato = document.getElementById("btnRegistrarPlato");
+  const btnRegistrarEmpleado = document.getElementById("btnRegistrarEmpleado");
+  const btnArea = document.getElementById("btnArea"); // Placeholder sin funcionalidad
+  const registrarPlatoView = document.getElementById("registrarPlatoView");
+  const registrarEmpleadoView = document.getElementById("registrarEmpleadoView");
+
+  // Función para ocultar todas las vistas de gerente
+  function hideGerenteViews() {
+    gerenteLoginView.classList.add("hidden");
+    gerenteDashboard.classList.add("hidden");
+    registrarPlatoView.classList.add("hidden");
+    registrarEmpleadoView.classList.add("hidden");
   }
 
-  // Manejo de navegación para cada botón
+  // Navegación principal: Cliente y Gerente
   btnCliente.addEventListener("click", () => {
     menuPrincipal.style.display = "none";
-    hideAllViews();
     clienteView.classList.remove("hidden");
-  });
-
-  btnEmpleado.addEventListener("click", () => {
-    menuPrincipal.style.display = "none";
-    hideAllViews();
-    empleadoView.classList.remove("hidden");
   });
 
   btnGerente.addEventListener("click", () => {
     menuPrincipal.style.display = "none";
-    hideAllViews();
-    gerenteView.classList.remove("hidden");
+    hideGerenteViews();
+    gerenteLoginView.classList.remove("hidden");
   });
 
-  // Manejo del formulario de Cliente (se mantiene como antes)
+  // Manejo del formulario de Cliente (igual que antes)
   const formCliente = document.getElementById("formCliente");
   if (formCliente) {
     formCliente.addEventListener("submit", (e) => {
@@ -54,22 +55,78 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Manejo del formulario de Empleado (nuevo)
+  // Manejo del formulario de Login para Gerente
+  if (formGerenteLogin) {
+    formGerenteLogin.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const usuarioGerente = document.getElementById("usuarioGerente").value;
+      const contrasenaGerente = document.getElementById("contrasenaGerente").value;
+      // Validación simple (usuario: gerente, contraseña: 1234)
+      if (usuarioGerente === "gerente" && contrasenaGerente === "1234") {
+        alert("Login exitoso");
+        formGerenteLogin.reset();
+        gerenteLoginView.classList.add("hidden");
+        gerenteDashboard.classList.remove("hidden");
+      } else {
+        alert("Usuario o contraseña incorrectos");
+      }
+    });
+  }
+
+  // Dentro del Panel de Gerente: navegación para Registrar Platos y Registrar Empleado
+  if (btnRegistrarPlato) {
+    btnRegistrarPlato.addEventListener("click", () => {
+      hideGerenteViews();
+      gerenteDashboard.classList.remove("hidden");
+      registrarPlatoView.classList.remove("hidden");
+    });
+  }
+
+  if (btnRegistrarEmpleado) {
+    btnRegistrarEmpleado.addEventListener("click", () => {
+      hideGerenteViews();
+      gerenteDashboard.classList.remove("hidden");
+      registrarEmpleadoView.classList.remove("hidden");
+    });
+  }
+
+  // (El botón "Área" queda como placeholder sin funcionalidad)
+
+  // Manejo del formulario de Registro de Platos
+  const formPlato = document.getElementById("formPlato");
+  if (formPlato) {
+    formPlato.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const nombrePlato = document.getElementById("nombrePlato").value;
+      const descripcionPlato = document.getElementById("descripcionPlato").value;
+      const precioPlato = document.getElementById("precioPlato").value;
+      const disponiblePlato = document.getElementById("disponiblePlato").checked;
+      alert(
+        `Plato registrado:\nNombre: ${nombrePlato}\nDescripción: ${descripcionPlato}\nPrecio: ${precioPlato}\nDisponible: ${disponiblePlato ? "Sí" : "No"}`
+      );
+      formPlato.reset();
+      registrarPlatoView.classList.add("hidden");
+      gerenteDashboard.classList.remove("hidden");
+    });
+  }
+
+  // Manejo del formulario de Registro de Empleado
   const formEmpleado = document.getElementById("formEmpleado");
   if (formEmpleado) {
     formEmpleado.addEventListener("submit", (e) => {
       e.preventDefault();
       const nombreEmpleado = document.getElementById("nombreEmpleado").value;
+      const apellidoEmpleado = document.getElementById("apellidoEmpleado").value;
       const ciEmpleado = document.getElementById("ciEmpleado").value;
-      const sueldoEmpleado = document.getElementById("sueldoEmpleado").value;
+      const celEmpleado = document.getElementById("celEmpleado").value;
       const cargoEmpleado = document.getElementById("cargoEmpleado").value;
+      const sueldoEmpleado = document.getElementById("sueldoEmpleado").value;
       alert(
-        `Empleado registrado:\nNombre: ${nombreEmpleado}\nCI: ${ciEmpleado}\nSueldo: ${sueldoEmpleado}\nCargo: ${cargoEmpleado}`
+        `Empleado registrado:\nNombre: ${nombreEmpleado} ${apellidoEmpleado}\nCI: ${ciEmpleado}\nCel: ${celEmpleado}\nCargo: ${cargoEmpleado}\nSueldo: ${sueldoEmpleado}`
       );
       formEmpleado.reset();
-      empleadoView.classList.add("hidden");
-      menuPrincipal.style.display = "block";
+      registrarEmpleadoView.classList.add("hidden");
+      gerenteDashboard.classList.remove("hidden");
     });
   }
 });
-
