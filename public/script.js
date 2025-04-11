@@ -101,6 +101,28 @@ document.addEventListener("DOMContentLoaded", () => {
       const descripcionPlato = document.getElementById("descripcionPlato").value;
       const precioPlato = document.getElementById("precioPlato").value;
       const disponiblePlato = document.getElementById("disponiblePlato").checked;
+      fetch("http://localhost:4001/registrarEmpleado", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombrePlato,
+          descripcionPlato,
+          precioPlato,
+          disponiblePlato,
+
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          alert(data.mensaje);
+          formEmpleado.reset();
+          empleadoView.classList.add("hidden");
+          menuPrincipal.style.display = "block";
+        })
+        .catch(error => {
+          console.error("❌ Error al registrar plato:", error);
+          alert("❌ Error al registrar empleado");
+        });
       alert(
         `Plato registrado:\nNombre: ${nombrePlato}\nDescripción: ${descripcionPlato}\nPrecio: ${precioPlato}\nDisponible: ${disponiblePlato ? "Sí" : "No"}`
       );
