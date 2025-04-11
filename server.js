@@ -79,7 +79,7 @@ app.post("/registrar", (req, res) => {
     const { nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpleado, sueldoEmpleado } = req.body;
 
 
-    conexion.query("SELECT * FROM Empleados WHERE ciEmpleado = ?  ", [ciEmpleado], (err, resultados) => {
+    conexion.query("SELECT * FROM Empleado WHERE ciEmpleado = ?  ", [ciEmpleado], (err, resultados) => {
         if (err) {
             console.error("❌ Error en la consulta:", err);
             res.status(500).json({ mensaje: "Error en la consulta" });
