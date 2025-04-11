@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const descripcionPlato = document.getElementById("descripcionPlato").value;
       const precioPlato = document.getElementById("precioPlato").value;
       const disponiblePlato = document.getElementById("disponiblePlato").checked;
-      fetch("http://localhost:4001/registrarEmpleado", {
+      fetch("http://localhost:4001/registrarPlato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -115,8 +115,8 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.json())
         .then(data => {
           alert(data.mensaje);
-          formEmpleado.reset();
-          empleadoView.classList.add("hidden");
+          formPlato.reset();
+          RegistratPlatoView.classList.add("hidden");
           menuPrincipal.style.display = "block";
         })
         .catch(error => {
