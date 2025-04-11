@@ -44,8 +44,14 @@ li {
   display: none;
 }
 
-/* Estilos para menú y vistas */
-#menuPrincipal, #clienteView, #empleadoView, #gerenteView {
+/* Estilos para menú principal y vistas */
+#menuPrincipal, 
+#clienteView, 
+#gerenteLoginView, 
+#gerenteDashboard, 
+#registrarEmpleadoView, 
+#registrarPlatoView, 
+#gerenteView { /* Aunque "gerenteView" se usa como placeholder, ya la incluimos en dashboard */
   margin-top: 20px;
 }
 
@@ -53,12 +59,22 @@ li {
   margin-bottom: 20px;
 }
 
-#btnCliente, #btnGerente, #btnEmpleado {
+/* Botones del menú principal */
+#btnCliente, #btnGerente {
   margin: 10px;
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
 }
+
+/* Botones del Panel Gerente */
+#gerenteDashboard button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
 
 
   
