@@ -43,30 +43,30 @@ app.get("/comidas", (req, res) => {
 app.post("/registrar", (req, res) => {
     console.log("📩 Datos recibidos:", req.body);
 
-    const { posicion, nombre, valor } = req.body;
+    const { nombrePlato, descripcionPlato, precioPlato, disponiblePlato } = req.body;
 
 
-    conexion.query("SELECT * FROM comidas WHERE nombre = ?", [nombre], (err, resultados) => {
+    conexion.query("SELECT * FROM Plato WHERE nombrePlato = ?", [nombrePlato], (err, resultados) => {
         if (err) {
             console.error("❌ Error en la consulta:", err);
             res.status(500).json({ mensaje: "Error en la consulta" });
             return;
         }
         if (resultados.length > 0) {
-            console.log("⚠️ Registro duplicado:", nombre);
+            console.log("⚠️ Registro duplicado:", nombrePlato);
             res.json({ mensaje: "⚠️ No se puede registrar porque ya existe" });
         } else {
             // Insertar el nuevo plato
             conexion.query(
-                "INSERT INTO comidas (posicion, nombre, valor) VALUES (?, ?, ?)",
-                [posicion, nombre, valor],
+                "INSERT INTO Plato(nombrePlato, descripcionPlato, precioPlato,disponiblePlato) VALUES (?, ?, ?,?)",
+                [nombrePlato, descripcionPlato, precioPlato, disponiblePlato],
                 (err, resultado) => {
                     if (err) {
                         console.error("❌ Error al registrar:", err);
                         res.status(500).json({ mensaje: "Error al registrar" });
                         return;
                     }
-                    console.log("✅ Registrado:", { posicion, nombre, valor });
+                    console.log("✅ Registrado:", { nombrePlato, descripcionPlato, precioPlato, disponiblePlato });
                     res.json({ mensaje: "✅ Registrado exitosamente" });
                 }
             );
