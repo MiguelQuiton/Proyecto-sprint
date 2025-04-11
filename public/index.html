@@ -7,15 +7,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Menú principal con los botones de roles -->
+  <!-- Menú Principal: Sólo muestra Cliente y Gerente -->
   <div id="menuPrincipal">
     <h1>Escoge tu Rol</h1>
     <button id="btnCliente">Cliente</button>
     <button id="btnGerente">Gerente</button>
-    <button id="btnEmpleado">Empleado</button>
   </div>
 
-  <!-- Vista para el Cliente (inicialmente oculta) -->
+  <!-- Vista para Cliente (sin cambios) -->
   <div id="clienteView" class="hidden">
     <h2>Registro de Cliente</h2>
     <form id="formCliente">
@@ -44,30 +43,72 @@
     </form>
   </div>
 
-  <!-- Vista para el Empleado (inicialmente oculta) -->
-  <div id="empleadoView" class="hidden">
-    <h2>Registro de Empleado</h2>
+  <!-- Vista de Login para Gerente -->
+  <div id="gerenteLoginView" class="hidden">
+    <h2>Login Gerente</h2>
+    <form id="formGerenteLogin">
+      <label for="usuarioGerente">Usuario:</label>
+      <input type="text" id="usuarioGerente" required>
+      
+      <label for="contrasenaGerente">Contraseña:</label>
+      <input type="password" id="contrasenaGerente" required>
+      
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+  </div>
+
+  <!-- Panel de Gerente (vista principal una vez logueado) -->
+  <div id="gerenteDashboard" class="hidden">
+    <h2>Panel Gerente</h2>
+    <button id="btnRegistrarPlato">Registrar Platos</button>
+    <button id="btnRegistrarEmpleado">Registrar Empleado</button>
+    <button id="btnArea">Área</button>
+  </div>
+
+  <!-- Vista para Registrar Platos -->
+  <div id="registrarPlatoView" class="hidden">
+    <h3>Registro de Platos</h3>
+    <form id="formPlato">
+      <label for="nombrePlato">Nombre del Plato:</label>
+      <input type="text" id="nombrePlato" required>
+      
+      <label for="descripcionPlato">Descripción del Plato:</label>
+      <input type="text" id="descripcionPlato" required>
+      
+      <label for="precioPlato">Precio del Plato:</label>
+      <input type="number" id="precioPlato" required>
+      
+      <label for="disponiblePlato">Disponible:</label>
+      <input type="checkbox" id="disponiblePlato">
+      
+      <button type="submit">Registrar Plato</button>
+    </form>
+  </div>
+
+  <!-- Vista para Registrar Empleado -->
+  <div id="registrarEmpleadoView" class="hidden">
+    <h3>Registro de Empleado</h3>
     <form id="formEmpleado">
       <label for="nombreEmpleado">Nombre del Empleado:</label>
       <input type="text" id="nombreEmpleado" required>
       
+      <label for="apellidoEmpleado">Apellido del Empleado:</label>
+      <input type="text" id="apellidoEmpleado" required>
+      
       <label for="ciEmpleado">CI del Empleado:</label>
       <input type="text" id="ciEmpleado" required>
       
-      <label for="sueldoEmpleado">Sueldo del Empleado:</label>
-      <input type="number" id="sueldoEmpleado" required>
+      <label for="celEmpleado">Celular del Empleado:</label>
+      <input type="text" id="celEmpleado" required>
       
       <label for="cargoEmpleado">Cargo del Empleado:</label>
       <input type="text" id="cargoEmpleado" required>
       
+      <label for="sueldoEmpleado">Sueldo del Empleado:</label>
+      <input type="number" id="sueldoEmpleado" required>
+      
       <button type="submit">Registrar Empleado</button>
     </form>
-  </div>
-
-  <!-- Vista para el Gerente (placeholder para futuros sprints) -->
-  <div id="gerenteView" class="hidden">
-    <h2>Vista Gerente</h2>
-    <p>Funcionalidades de gerente se agregarán en futuros sprints.</p>
   </div>
 
   <script src="script.js"></script>
