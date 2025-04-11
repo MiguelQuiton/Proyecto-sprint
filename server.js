@@ -76,30 +76,30 @@ app.post("/registrar", (req, res) => {
 app.post("/registrar", (req, res) => {
     console.log("📩 Datos recibidos:", req.body);
 
-    const { nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpledo, sueldoEmpleado } = req.body;
+    const { nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpleado, sueldoEmpleado } = req.body;
 
 
-    conexion.query("SELECT * FROM Empleados WHERE nombreEmpleado = ? and apellidoEmpleado= ? ", [nombreEmpleado], (err, resultados) => {
+    conexion.query("SELECT * FROM Empleados WHERE ciEmpleado = ?  ", [ciEmpleado], (err, resultados) => {
         if (err) {
             console.error("❌ Error en la consulta:", err);
             res.status(500).json({ mensaje: "Error en la consulta" });
             return;
         }
         if (resultados.length > 0) {
-            console.log("⚠️ Registro duplicado:", nombreEmpleado);
+            console.log("⚠️ Registro duplicado:", ciEmpleado);
             res.json({ mensaje: "⚠️ No se puede registrar porque el empleado ya existe" });
         } else {
             // Insertar el nuevo empleado
             conexion.query(
-                "INSERT INTO Empleado (nombreEmpleado,apellidoEmpleado, ciEmpleado,celEmpleado, cargoEmpledo,sueldoEmpleado) VALUES (?, ?, ?)",
-                [nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpledo, sueldoEmpleado],
+                "INSERT INTO Empleado (nombreEmpleado,apellidoEmpleado, ciEmpleado,celEmpleado, cargoEmpledo,sueldoEmpleado) VALUES (?, ?, ?,?,?,?)",
+                [nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpleado, sueldoEmpleado],
                 (err, resultado) => {
                     if (err) {
                         console.error("❌ Error al registrar:", err);
                         res.status(500).json({ mensaje: "Error al registrar" });
                         return;
                     }
-                    console.log("✅ Registrado:", { nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpledo, sueldoEmpleado });
+                    console.log("✅ Registrado:", { nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpleado, sueldoEmpleado });
                     res.json({ mensaje: "✅ Registrado exitosamente" });
                 }
             );
