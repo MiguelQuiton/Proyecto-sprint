@@ -97,16 +97,30 @@ document.addEventListener("DOMContentLoaded", () => {
   if (formPlato) {
     formPlato.addEventListener("submit", (e) => {
       e.preventDefault();
-      const nombrePlato = document.getElementById("nombrePlato").value;
-      const descripcionPlato = document.getElementById("descripcionPlato").value;
-      const precioPlato = document.getElementById("precioPlato").value;
-      const disponiblePlato = document.getElementById("disponiblePlato").checked;
-      alert(
-        `Plato registrado:\nNombre: ${nombrePlato}\nDescripción: ${descripcionPlato}\nPrecio: ${precioPlato}\nDisponible: ${disponiblePlato ? "Sí" : "No"}`
-      );
-      formPlato.reset();
-      registrarPlatoView.classList.add("hidden");
-      gerenteDashboard.classList.remove("hidden");
+    
+      const nombre = document.getElementById("nombrePlato").value;
+      const descripcion = document.getElementById("descripcionPlato").value;
+      const precio = document.getElementById("precioPlato").value;
+      const disponible = document.getElementById("disponiblePlato").checked;
+    
+      fetch("/registrar-plato", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre, descripcion, precio, disponible }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          alert(data.mensaje || "Respuesta inesperada");
+          if (data.mensaje?.includes("éxito")) {
+            formPlato.reset();
+            registrarPlatoView.classList.add("hidden");
+            gerenteDashboard.classList.remove("hidden");
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Error al registrar plato");
+        });
     });
   }
 

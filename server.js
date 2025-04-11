@@ -107,6 +107,42 @@ app.post("/registrar", (req, res) => {
         }
     });
 });
+app.post("/registrar-plato", (req, res) => {
+    const { nombre, descripcion, precio, disponible } = req.body;
+    
+    const normalizado = (texto) =>
+      texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s+/g, "");
+  
+    const nombreNorm = normalizado(nombre);
+    const descNorm = normalizado(descripcion);
+  
+    const consulta = "SELECT * FROM platillos";
+    conexion.query(consulta, (err, resultados) => {
+      if (err) {
+        console.error("Error al verificar duplicados:", err);
+        return res.status(500).json({ error: "Error en la verificación" });
+      }
+  
+      const duplicado = resultados.find((p) => {
+        const nombreBD = normalizado(p.nombre);
+        const descBD = normalizado(p.descripcion);
+        return nombreBD === nombreNorm && descBD === descNorm;
+      });
+  
+      if (duplicado) {
+        return res.status(400).json({ mensaje: "⚠️ El plato ya existe en la base de datos." });
+      }
+  
+      const insertar = "INSERT INTO platillos (nombre, descripcion, precio, disponible) VALUES (?, ?, ?, ?)";
+      conexion.query(insertar, [nombre, descripcion, precio, disponible], (err2, result) => {
+        if (err2) {
+          console.error("Error al insertar plato:", err2);
+          return res.status(500).json({ error: "Error al guardar el plato" });
+        }
+        res.json({ mensaje: "✅ Plato registrado con éxito." });
+      });
+    });
+  });
 
 app.listen(4001, () => console.log("🚀 Servidor corriendo en http://localhost:4001"));
 
