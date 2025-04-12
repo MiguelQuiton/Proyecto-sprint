@@ -59,7 +59,7 @@ app.post("/registrarEmpleado", (req, res) => {
         } else {
             // Insertar el nuevo empleado
             conexion.query(
-                "INSERT INTO Empleado (nombreEmpleado,apellidoEmpleado, ciEmpleado,celEmpleado, cargoEmpledo,sueldoEmpleado) VALUES (?, ?, ?,?,?,?)",
+                "INSERT INTO Empleado (nombreEmpleado,apellidoEmpleado, ciEmpleado,celEmpleado, cargoEmpleado,sueldoEmpleado) VALUES (?, ?, ?,?,?,?)",
                 [nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpleado, sueldoEmpleado],
                 (err, resultado) => {
                     if (err) {

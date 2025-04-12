@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
           alert(data.mensaje);
           formPlato.reset();
-          RegistratPlatoView.classList.add("hidden");
+          RegistrarPlatoView.classList.add("hidden");
           menuPrincipal.style.display = "block";
         })
         .catch(error => {
