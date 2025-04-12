@@ -41,7 +41,7 @@ app.get("/comidas", (req, res) => {
 
 
 
-app.post("/registrar", (req, res) => {
+app.post("/registrarEmpleado", (req, res) => {
     console.log("📩 Datos recibidos:", req.body);
 
     const { nombreEmpleado, apellidoEmpleado, ciEmpleado, celEmpleado, cargoEmpleado, sueldoEmpleado } = req.body;
@@ -74,7 +74,7 @@ app.post("/registrar", (req, res) => {
         }
     });
 });
-app.post("/registrar", (req, res) => {
+app.post("/registrarPlato", (req, res) => {
     console.log("📩 Datos recibidos:", req.body);
 
     const { nombrePlato, descripcionPlato, precioPlato, disponiblePlato } = req.body;
