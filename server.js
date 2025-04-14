@@ -74,8 +74,33 @@ app.post("/registrar", (req, res) => {
         }
     });
 });
-app.post("/registrar", (req, res) => {
-    console.log("📩 Datos recibidos:", req.body);
+//verificacion de pago 
+app.post("/verificarPagoPlato", (req, res) => {
+    const { nombrePlato, pagoRealizado } = req.body;
+
+    // Verificar si el plato existe y está disponible
+    conexion.query(
+        "SELECT * FROM Plato WHERE nombrePlato = ? AND disponiblePlato = 'si'",
+        [nombrePlato],
+        (err, resultados) => {
+            if (err) {
+                console.error("❌ Error en la consulta:", err);
+                return res.status(500).json({ mensaje: "Error en la base de datos" });
+            }
+
+            if (resultados.length === 0) {
+                return res.json({ mensaje: "❌ Plato no disponible o no existe" });
+            }
+
+            // Verificar si el cliente ha pagado
+            if (pagoRealizado === true) {
+                return res.json({ mensaje: "✅ Pago verificado y plato disponible" });
+            } else {
+                return res.json({ mensaje: "⚠️ El cliente no ha pagado aún" });
+            }
+        }
+    );
+});
 
     const { nombrePlato, descripcionPlato, precioPlato, disponiblePlato } = req.body;
 
