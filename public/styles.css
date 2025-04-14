@@ -1,7 +1,33 @@
 body {
   font-family: Arial, sans-serif;
+  margin:0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  margin: 20px;
+  
+}
+#mainHeader {
+  background-color: #003366; 
+  color: white;
+  padding: 0.05px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* FOOTER */
+#mainFooter {
+  background-color: #003366;
+  color: white;
+  text-align: center;
+  padding: 1px;
+  margin-top: auto;
+  /*border-radius: 8px;
+  font-size: 14px;*/
+}
+main{
+  flex: 1;
+  padding: 20px;
 }
 
 form {
