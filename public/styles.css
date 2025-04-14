@@ -41,7 +41,7 @@ input, button {
   margin: 5px 0;
   padding: 8px;
 }
-
+/*
 button {
   background-color: rgba(0, 0, 255, 0.638);
   color: white;
@@ -51,7 +51,25 @@ button {
 
 button:hover {
   background-color: rgba(0, 0, 139, 0.871);
+}*/
+button {
+  background-color: #3366ff;
+  color: white;
+  border: none;
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 10px 20px;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transición suave */
 }
+
+button:hover {
+  background-color: #254eda;
+  transform: scale(1.03); /* Ligero agrandamiento al pasar el mouse */
+}
+
 
 ul {
   list-style: none;
