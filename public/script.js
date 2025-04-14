@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Referencias a los botones de la pantalla principal y vistas
   const btnCliente = document.getElementById("btnCliente");
   const btnGerente = document.getElementById("btnGerente");
-  
+
   const menuPrincipal = document.getElementById("menuPrincipal");
   const clienteView = document.getElementById("clienteView");
 
@@ -97,30 +97,38 @@ document.addEventListener("DOMContentLoaded", () => {
   if (formPlato) {
     formPlato.addEventListener("submit", (e) => {
       e.preventDefault();
-    
-      const nombre = document.getElementById("nombrePlato").value;
-      const descripcion = document.getElementById("descripcionPlato").value;
-      const precio = document.getElementById("precioPlato").value;
-      const disponible = document.getElementById("disponiblePlato").checked;
-    
-      fetch("/registrar-plato", {
+      const nombrePlato = document.getElementById("nombrePlato").value;
+      const descripcionPlato = document.getElementById("descripcionPlato").value;
+      const precioPlato = document.getElementById("precioPlato").value;
+      const disponiblePlato = document.getElementById("disponiblePlato").checked;
+      fetch("http://localhost:4001/registrarPlato", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nombre, descripcion, precio, disponible }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          alert(data.mensaje || "Respuesta inesperada");
-          if (data.mensaje?.includes("éxito")) {
-            formPlato.reset();
-            registrarPlatoView.classList.add("hidden");
-            gerenteDashboard.classList.remove("hidden");
-          }
+        body: JSON.stringify({
+          nombrePlato,
+          descripcionPlato,
+          precioPlato,
+          disponiblePlato,
+
         })
-        .catch((error) => {
-          console.error("Error:", error);
-          alert("Error al registrar plato");
+      })
+        .then(res => res.json())
+        .then(data => {
+          alert(data.mensaje);
+          formPlato.reset();
+          RegistrarPlatoView.classList.add("hidden");
+          menuPrincipal.style.display = "block";
+        })
+        .catch(error => {
+          console.error("❌ Error al registrar plato:", error);
+          alert("❌ Error al registrar empleado");
         });
+      alert(
+        `Plato registrado:\nNombre: ${nombrePlato}\nDescripción: ${descripcionPlato}\nPrecio: ${precioPlato}\nDisponible: ${disponiblePlato ? "Sí" : "No"}`
+      );
+      formPlato.reset();
+      registrarPlatoView.classList.add("hidden");
+      gerenteDashboard.classList.remove("hidden");
     });
   }
 
@@ -135,6 +143,29 @@ document.addEventListener("DOMContentLoaded", () => {
       const celEmpleado = document.getElementById("celEmpleado").value;
       const cargoEmpleado = document.getElementById("cargoEmpleado").value;
       const sueldoEmpleado = document.getElementById("sueldoEmpleado").value;
+      fetch("http://localhost:4001/registrarEmpleado", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombreEmpleado,
+          apellidoEmpleado,
+          ciEmpleado,
+          celEmpleado,
+          cargoEmpleado,
+          sueldoEmpleado
+        })
+      })
+        .then(res => res.json())
+        .then(data => {
+          alert(data.mensaje);
+          formEmpleado.reset();
+          empleadoView.classList.add("hidden");
+          menuPrincipal.style.display = "block";
+        })
+        .catch(error => {
+          console.error("❌ Error al registrar empleado:", error);
+          alert("❌ Error al registrar empleado");
+        });
       alert(
         `Empleado registrado:\nNombre: ${nombreEmpleado} ${apellidoEmpleado}\nCI: ${ciEmpleado}\nCel: ${celEmpleado}\nCargo: ${cargoEmpleado}\nSueldo: ${sueldoEmpleado}`
       );
