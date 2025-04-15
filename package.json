@@ -8,10 +8,19 @@
   },
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Este repositorio ha sido desarrollado como parte del proyecto/tarea asignado de la materia de Sistemas de Información II.",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
-    "mysql2": "^3.13.0"
-  }
+    "mysql2": "^3.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiguelQuiton/Proyecto-sprint.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/MiguelQuiton/Proyecto-sprint/issues"
+  },
+  "homepage": "https://github.com/MiguelQuiton/Proyecto-sprint#readme"
 }
