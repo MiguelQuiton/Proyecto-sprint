@@ -174,4 +174,29 @@ document.addEventListener("DOMContentLoaded", () => {
       gerenteDashboard.classList.remove("hidden");
     });
   }
+  
+  function verificarCodigoGerente() {
+    const codigo = document.getElementById("codigoGerente").value.trim();
+    const resultado = document.getElementById("resultadoVerificacionGerente");
+  
+    fetch("/verificar-codigo-gerente", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ codigo })
+    })
+      .then(res => res.json())
+      .then(data => {
+        resultado.textContent = data.mensaje;
+        resultado.style.color = data.valido ? "green" : "red";
+  
+        if (data.valido) {
+          document.getElementById("gerenteDashboard").classList.remove("hidden");
+        }
+      })
+      .catch(err => {
+        resultado.textContent = "❌ Error de conexión.";
+        resultado.style.color = "red";
+      });
+  }
+
 });

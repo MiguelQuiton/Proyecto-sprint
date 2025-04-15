@@ -38,8 +38,30 @@ app.get("/comidas", (req, res) => {
         res.json(resultados);
     });
 });
+// Verificacion de Id Gerente
+app.use(express.json()); 
 
-
+app.post("/verificar-codigo-gerente", (req, res) => {
+    const { codigo } = req.body;
+  
+    if (!codigo) {
+      return res.status(400).json({ valido: false, mensaje: "⚠️ Ingrese un código." });
+    }
+  
+    const consulta = "SELECT * FROM empleados WHERE codigoEmpleado = ? AND cargo = 'Gerente'";
+    conexion.query(consulta, [codigo], (err, resultados) => {
+      if (err) {
+        console.error("❌ Error al verificar código:", err);
+        return res.status(500).json({ valido: false, mensaje: "Error del servidor" });
+      }
+  
+      if (resultados.length > 0) {
+        res.json({ valido: true, mensaje: "✅ Código válido. Acceso permitido al gerente." });
+      } else {
+        res.status(404).json({ valido: false, mensaje: "❌ Código incorrecto o no es gerente." });
+      }
+    });
+  });
 
 app.post("/registrarEmpleado", (req, res) => {
     console.log("📩 Datos recibidos:", req.body);
@@ -143,6 +165,8 @@ app.post("/registrar-plato", (req, res) => {
       });
     });
   });
+
+  
 
 app.listen(4001, () => console.log("🚀 Servidor corriendo en http://localhost:4001"));
 
